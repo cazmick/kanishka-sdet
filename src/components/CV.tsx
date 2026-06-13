@@ -59,30 +59,24 @@ function Gauge({ value, label, color = "var(--cyan)" }: { value: number; label: 
   );
 }
 
-function SkillBar({ name, level, icon: Icon, delay = 0 }: { name: string; level: number; icon: any; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-30px" });
+function MiniRing({ value, size = 36, delay = 0 }: { value: number; size?: number; delay?: number }) {
+  const r = (size - 8) / 2;
+  const c = 2 * Math.PI * r;
+  const offset = c - (value / 100) * c;
   return (
-    <div ref={ref} className="group">
-      <div className="mb-2 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-primary transition-colors group-hover:bg-primary/15">
-            <Icon className="h-4 w-4" />
-          </span>
-          <span className="text-sm font-medium">{name}</span>
-        </div>
-        <span className="font-mono text-xs text-muted-foreground">{level}%</span>
-      </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${level}%` } : {}}
-          transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
-          className="h-full rounded-full"
-          style={{ background: "var(--gradient-cyan-magenta)" }}
-        />
-      </div>
-    </div>
+    <svg className="flex-shrink-0 -rotate-90" width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+      <circle cx={size / 2} cy={size / 2} r={r} stroke="oklch(1 0 0 / 0.08)" strokeWidth="3" fill="none" />
+      <motion.circle
+        cx={size / 2} cy={size / 2} r={r}
+        stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" fill="none"
+        strokeDasharray={c}
+        initial={{ strokeDashoffset: c }}
+        whileInView={{ strokeDashoffset: offset }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
+        style={{ filter: "drop-shadow(0 0 4px oklch(0.78 0.18 195 / 0.5))" }}
+      />
+    </svg>
   );
 }
 
