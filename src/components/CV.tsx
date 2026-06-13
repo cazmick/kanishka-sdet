@@ -7,6 +7,7 @@ import {
   Sparkles, Zap, Trophy, Target, ArrowUpRight, Cloud as CloudIcon,
   Calendar, Download,
 } from "lucide-react";
+import Starfield from "./Starfield";
 
 /* ---------- helpers ---------- */
 function Counter({ to, suffix = "", duration = 1.8 }: { to: number; suffix?: string; duration?: number }) {
@@ -171,6 +172,9 @@ export default function CV() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      {/* 3D scroll-reactive starfield */}
+      <Starfield density={220} />
+
       {/* scroll progress bar */}
       <motion.div
         className="fixed inset-x-0 top-0 z-50 h-[3px] origin-left"
