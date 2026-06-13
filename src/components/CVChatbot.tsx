@@ -93,29 +93,31 @@ export default function CVChatbot() {
             <motion.div
               animate={
                 reacted
-                  ? { rotate: [0, -20, 20, -10, 10, 0], scale: [1, 1.4, 1.4, 1.2, 1.2, 1] }
-                  : { rotate: [0, -15, 15, -15, 0], y: [0, -6, 0, -6, 0] }
+                  ? { rotate: [0, -10, 10, -5, 5, 0], scale: [1, 1.25, 1.25, 1.15, 1.15, 1] }
+                  : { rotate: [0, -6, 6, -6, 0], y: [0, -5, 0, -5, 0] }
               }
               transition={
                 reacted
                   ? { duration: 0.6 }
                   : { duration: 2.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }
               }
-              className="relative grid h-12 w-12 place-items-center rounded-full text-3xl"
-              style={{
-                background: "radial-gradient(circle at 30% 30%, oklch(0.95 0.1 90), oklch(0.78 0.18 60))",
-                boxShadow: "0 8px 25px oklch(0.78 0.18 60 / 0.5), inset -3px -4px 8px oklch(0 0 0 / 0.15)",
-              }}
+              className="relative h-20 w-20"
+              style={{ filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.35))" }}
             >
-              <span style={{ filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.25))" }}>
-                {reacted ? "🤩" : "👇"}
-              </span>
+              <img
+                src={chatBuddy}
+                alt="Chat buddy"
+                width={160}
+                height={160}
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
               {/* sparkle ring */}
               <motion.span
                 className="pointer-events-none absolute inset-0 rounded-full"
-                animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                animate={{ scale: [1, 1.4], opacity: [0.5, 0] }}
                 transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
-                style={{ boxShadow: "0 0 0 2px oklch(0.95 0.1 90 / 0.6)" }}
+                style={{ boxShadow: "0 0 0 2px oklch(0.78 0.18 195 / 0.5)" }}
               />
             </motion.div>
           </motion.button>
