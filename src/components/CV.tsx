@@ -5,7 +5,7 @@ import {
   Code2, Cpu, Database, GitBranch, Cloud, Network, FlaskConical,
   Smartphone, Server, Brain, LineChart, MessagesSquare, Lightbulb,
   Sparkles, Zap, Trophy, Target, ArrowUpRight, Cloud as CloudIcon,
-  Calendar,
+  Calendar, Download,
 } from "lucide-react";
 
 /* ---------- helpers ---------- */
@@ -451,6 +451,10 @@ export default function CV() {
               <a href="https://www.linkedin.com/in/kanishka-mogha-014729172/" target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-2/60 px-6 py-3 font-medium hover:border-primary hover:text-primary">
                 <Linkedin className="h-4 w-4" /> Connect on LinkedIn
+              </a>
+              <a href="/Kanishka_SDET_5Y.pdf" download
+                 className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-2/60 px-6 py-3 font-medium transition-colors hover:border-primary hover:text-primary">
+                <Download className="h-4 w-4" /> Download CV
               </a>
             </div>
           </div>
