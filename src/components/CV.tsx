@@ -200,21 +200,16 @@ export default function CV() {
             </span>
             available for opportunities
           </div>
-          <div className="flex flex-col items-center gap-1">
-            <div className="flex items-center gap-2">
-              {contacts.map(({ icon: Icon, href, label }) => (
-                <motion.a
-                  key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                  whileHover={{ y: -3, scale: 1.08 }} whileTap={{ scale: 0.95 }}
-                  className="glass grid h-10 w-10 place-items-center rounded-full text-foreground transition-colors hover:text-primary"
-                >
-                  <Icon className="h-4 w-4" />
-                </motion.a>
-              ))}
-            </div>
-            <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-accent/80">
-              <MapPin className="h-3 w-3" /> Open for relocation
-            </div>
+          <div className="flex items-center gap-2">
+            {contacts.map(({ icon: Icon, href, label }) => (
+              <motion.a
+                key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                whileHover={{ y: -3, scale: 1.08 }} whileTap={{ scale: 0.95 }}
+                className="glass grid h-10 w-10 place-items-center rounded-full text-foreground transition-colors hover:text-primary"
+              >
+                <Icon className="h-4 w-4" />
+              </motion.a>
+            ))}
           </div>
         </motion.nav>
 
@@ -270,6 +265,13 @@ export default function CV() {
                 >
                   Senior SDET — Mobile & API Automation Specialist
                 </motion.h2>
+
+                <motion.div
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.38, duration: 0.6 }}
+                  className="mt-2 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-accent/80"
+                >
+                  <MapPin className="h-3 w-3" /> Open for relocation
+                </motion.div>
 
                 <motion.p
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45, duration: 0.8 }}
