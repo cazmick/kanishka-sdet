@@ -266,6 +266,13 @@ export default function CV() {
                   Senior SDET — Mobile & API Automation Specialist
                 </motion.h2>
 
+                <motion.div
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.38, duration: 0.6 }}
+                  className="mt-2 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] text-accent/80"
+                >
+                  <MapPin className="h-3 w-3" /> Open for relocation
+                </motion.div>
+
                 <motion.p
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45, duration: 0.8 }}
                   className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted-foreground"
