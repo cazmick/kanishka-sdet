@@ -104,10 +104,10 @@ const skills = [
 ];
 
 const aiSkills = [
-  { name: "Machine Learning & AI", icon: Brain, desc: "Predictive flakiness models" },
-  { name: "AI Test Analytics", icon: LineChart, desc: "Regression prioritization" },
-  { name: "ChatGPT / OpenAI API", icon: MessagesSquare, desc: "Generative test design" },
-  { name: "Prompt Engineering", icon: Lightbulb, desc: "LLM-powered tooling" },
+  { name: "Machine Learning & AI", icon: Brain, desc: "Predictive flakiness models", confidence: 88, tag: "MODEL" },
+  { name: "AI Test Analytics", icon: LineChart, desc: "Regression prioritization", confidence: 92, tag: "SIGNAL" },
+  { name: "ChatGPT / OpenAI API", icon: MessagesSquare, desc: "Generative test design", confidence: 95, tag: "LLM" },
+  { name: "Prompt Engineering", icon: Lightbulb, desc: "LLM-powered tooling", confidence: 90, tag: "CRAFT" },
 ];
 
 const experience = [
