@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import CV from "@/components/CV";
+import CVChatbot from "@/components/CVChatbot";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -15,5 +16,10 @@ export const Route = createFileRoute("/")({
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" },
     ],
   }),
-  component: CV,
+  component: () => (
+    <>
+      <CV />
+      <CVChatbot />
+    </>
+  ),
 });
