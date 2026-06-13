@@ -314,12 +314,25 @@ export default function CV() {
 
         {/* SKILLS */}
         <Section title="Core Stack" eyebrow="01 — Tools & Frameworks">
-          <div className="glass rounded-3xl p-6 md:p-10">
-            <div className="grid gap-x-10 gap-y-6 md:grid-cols-2">
-              {skills.map((s, i) => (
-                <SkillBar key={s.name} {...s} delay={i * 0.04} />
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {skills.map((s, i) => (
+              <motion.div
+                key={s.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.03, duration: 0.4 }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="glass relative flex items-center gap-3 overflow-hidden rounded-xl p-3"
+              >
+                <MiniRing value={s.level} size={36} delay={i * 0.03} />
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-xs font-medium leading-tight">{s.name}</div>
+                  <div className="font-mono text-[10px] text-muted-foreground">{s.level}%</div>
+                </div>
+                <div className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary/60" style={{ width: `${s.level}%` }} />
+              </motion.div>
+            ))}
           </div>
         </Section>
 
