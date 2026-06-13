@@ -5,6 +5,7 @@ import {
   Code2, Cpu, Database, GitBranch, Cloud, Network, FlaskConical,
   Smartphone, Server, Brain, LineChart, MessagesSquare, Lightbulb,
   Sparkles, Zap, Trophy, Target, ArrowUpRight, Cloud as CloudIcon,
+  Calendar,
 } from "lucide-react";
 
 /* ---------- helpers ---------- */
