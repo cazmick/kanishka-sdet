@@ -220,12 +220,20 @@ export default function CVChatbot() {
                       {isUser ? (
                         text
                       ) : text ? (
-                        <div className="prose prose-sm prose-invert max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-a:text-primary prose-a:underline">
+                        <div className="text-sm leading-relaxed">
                           <ReactMarkdown
                             components={{
-                              a: ({ node, ...props }) => (
-                                <a {...props} target="_blank" rel="noopener noreferrer" />
+                              a: ({ node, className, ...props }) => (
+                                <a
+                                  {...props}
+                                  className={`font-semibold text-cyan underline underline-offset-2 hover:text-lime transition-colors ${className || ""}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                />
                               ),
+                              p: ({ node, ...props }) => <p {...props} className="my-1" />,
+                              ul: ({ node, ...props }) => <ul {...props} className="my-1 list-disc pl-4" />,
+                              ol: ({ node, ...props }) => <ol {...props} className="my-1 list-decimal pl-4" />,
                             }}
                           >
                             {text}
