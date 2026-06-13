@@ -3,6 +3,7 @@ import { DefaultChatTransport, type UIMessage } from "ai";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { Bot, Send, Sparkles, X, Loader2 } from "lucide-react";
+import chatBuddy from "@/assets/chat-buddy.png";
 
 const SUGGESTIONS = [
   "Summarize Kanishka's experience",
