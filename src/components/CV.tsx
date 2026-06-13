@@ -294,6 +294,21 @@ export default function CV() {
                     <Mail className="h-4 w-4" /> kanishkamogha20@gmail.com
                   </a>
                 </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
+                  className="mt-5 flex flex-wrap gap-3"
+                >
+                  <a href="https://calendly.com/kanishkamogha20/new-meeting" target="_blank" rel="noopener noreferrer"
+                     className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform hover:scale-105"
+                     style={{ background: "var(--gradient-cyan-magenta)", boxShadow: "var(--shadow-glow-cyan)" }}>
+                    <Calendar className="h-4 w-4" /> Book a call
+                  </a>
+                  <a href="/Kanishka_SDET_5Y.pdf" download
+                     className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-2/60 px-5 py-2.5 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
+                    <Download className="h-4 w-4" /> Download CV
+                  </a>
+                </motion.div>
               </div>
             </div>
           </div>
