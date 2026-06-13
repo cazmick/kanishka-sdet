@@ -3,7 +3,7 @@ import { DefaultChatTransport, type UIMessage } from "ai";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { Bot, Send, Sparkles, X, Loader2 } from "lucide-react";
-import chatBuddy from "@/assets/chat-buddy.png";
+import chatBuddy from "@/assets/chat-buddy-dance.png";
 
 const SUGGESTIONS = [
   "Summarize Kanishka's experience",
@@ -72,7 +72,7 @@ export default function CVChatbot() {
             exit={{ opacity: 0, scale: 0.5 }}
             transition={{ delay: 1.2, type: "spring", stiffness: 200, damping: 12 }}
             aria-label="Chat with me"
-            className="fixed bottom-24 right-4 z-50 flex items-center gap-2 md:bottom-28 md:right-10"
+            className="fixed bottom-16 right-2 z-50 flex items-center gap-2 md:bottom-20 md:right-4"
           >
             {/* Speech bubble */}
             <motion.div
@@ -89,35 +89,50 @@ export default function CVChatbot() {
                 style={{ background: "oklch(0.7 0.22 320)" }}
               />
             </motion.div>
-            {/* Genmoji */}
+            {/* Dancing buddy */}
             <motion.div
               animate={
                 reacted
-                  ? { rotate: [0, -10, 10, -5, 5, 0], scale: [1, 1.25, 1.25, 1.15, 1.15, 1] }
-                  : { rotate: [0, -6, 6, -6, 0], y: [0, -5, 0, -5, 0] }
+                  ? { rotate: [0, -15, 15, -10, 10, -5, 5, 0], scale: [1, 1.3, 1.2, 1.1, 1] }
+                  : {
+                      y: [0, -10, 0, -6, 0],
+                      rotate: [0, -8, 8, -5, 0],
+                      x: [0, 3, -3, 2, 0],
+                    }
               }
               transition={
                 reacted
-                  ? { duration: 0.6 }
-                  : { duration: 2.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }
+                  ? { duration: 0.7 }
+                  : { duration: 1.8, repeat: Infinity, ease: "easeInOut" }
               }
-              className="relative h-20 w-20"
+              className="relative h-24 w-24"
               style={{ filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.35))" }}
             >
               <img
                 src={chatBuddy}
                 alt="Chat buddy"
-                width={160}
-                height={160}
+                width={200}
+                height={200}
                 loading="lazy"
                 className="h-full w-full object-contain"
               />
               {/* sparkle ring */}
               <motion.span
                 className="pointer-events-none absolute inset-0 rounded-full"
-                animate={{ scale: [1, 1.4], opacity: [0.5, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                transition={{ duration: 1.4, repeat: Infinity, ease: "easeOut" }}
                 style={{ boxShadow: "0 0 0 2px oklch(0.78 0.18 195 / 0.5)" }}
+              />
+              {/* extra sparkles */}
+              <motion.span
+                className="pointer-events-none absolute -top-1 -right-1 h-2 w-2 rounded-full bg-amber-300"
+                animate={{ scale: [0.8, 1.4, 0.8], opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.span
+                className="pointer-events-none absolute -bottom-1 -left-1 h-1.5 w-1.5 rounded-full bg-cyan-300"
+                animate={{ scale: [1, 1.6, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
               />
             </motion.div>
           </motion.button>
