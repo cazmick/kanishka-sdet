@@ -13,6 +13,7 @@ const SUGGESTIONS = [
 
 export default function CVChatbot() {
   const [open, setOpen] = useState(false);
+  const [reacted, setReacted] = useState(false);
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -56,6 +57,70 @@ export default function CVChatbot() {
 
   return (
     <>
+      {/* Animated sticker pointing at chatbot */}
+      <AnimatePresence>
+        {!open && (
+          <motion.button
+            key="sticker"
+            onClick={() => {
+              setReacted(true);
+              setTimeout(() => setOpen(true), 400);
+            }}
+            initial={{ opacity: 0, y: 20, scale: 0.5 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            transition={{ delay: 1.2, type: "spring", stiffness: 200, damping: 12 }}
+            aria-label="Chat with me"
+            className="fixed bottom-24 right-4 z-50 flex items-center gap-2 md:bottom-28 md:right-10"
+          >
+            {/* Speech bubble */}
+            <motion.div
+              animate={{ y: [0, -4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="relative rounded-2xl px-3 py-1.5 text-xs font-semibold text-white shadow-lg"
+              style={{
+                background: "linear-gradient(135deg, oklch(0.78 0.18 195), oklch(0.7 0.22 320))",
+              }}
+            >
+              Chat with me!
+              <span
+                className="absolute -bottom-1 right-4 h-3 w-3 rotate-45"
+                style={{ background: "oklch(0.7 0.22 320)" }}
+              />
+            </motion.div>
+            {/* Genmoji */}
+            <motion.div
+              animate={
+                reacted
+                  ? { rotate: [0, -20, 20, -10, 10, 0], scale: [1, 1.4, 1.4, 1.2, 1.2, 1] }
+                  : { rotate: [0, -15, 15, -15, 0], y: [0, -6, 0, -6, 0] }
+              }
+              transition={
+                reacted
+                  ? { duration: 0.6 }
+                  : { duration: 2.4, repeat: Infinity, ease: "easeInOut", repeatDelay: 1 }
+              }
+              className="relative grid h-12 w-12 place-items-center rounded-full text-3xl"
+              style={{
+                background: "radial-gradient(circle at 30% 30%, oklch(0.95 0.1 90), oklch(0.78 0.18 60))",
+                boxShadow: "0 8px 25px oklch(0.78 0.18 60 / 0.5), inset -3px -4px 8px oklch(0 0 0 / 0.15)",
+              }}
+            >
+              <span style={{ filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.25))" }}>
+                {reacted ? "🤩" : "👇"}
+              </span>
+              {/* sparkle ring */}
+              <motion.span
+                className="pointer-events-none absolute inset-0 rounded-full"
+                animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                style={{ boxShadow: "0 0 0 2px oklch(0.95 0.1 90 / 0.6)" }}
+              />
+            </motion.div>
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* Launcher */}
       <motion.button
         onClick={() => setOpen((v) => !v)}
