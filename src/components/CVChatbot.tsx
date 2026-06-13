@@ -72,7 +72,7 @@ export default function CVChatbot() {
             exit={{ opacity: 0, scale: 0.5 }}
             transition={{ delay: 1.2, type: "spring", stiffness: 200, damping: 12 }}
             aria-label="Chat with me"
-            className="fixed bottom-16 right-2 z-50 flex items-center gap-2 md:bottom-20 md:right-4"
+            className="fixed bottom-16 right-2 z-50 flex flex-col items-center gap-1 md:bottom-20 md:right-4"
           >
             {/* Speech bubble */}
             <motion.div
@@ -85,7 +85,7 @@ export default function CVChatbot() {
             >
               Chat with me!
               <span
-                className="absolute -bottom-1 right-4 h-3 w-3 rotate-45"
+                className="absolute -bottom-1 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45"
                 style={{ background: "oklch(0.7 0.22 320)" }}
               />
             </motion.div>
