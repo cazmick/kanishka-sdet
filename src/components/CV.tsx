@@ -59,30 +59,24 @@ function Gauge({ value, label, color = "var(--cyan)" }: { value: number; label: 
   );
 }
 
-function SkillBar({ name, level, icon: Icon, delay = 0 }: { name: string; level: number; icon: any; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-30px" });
+function MiniRing({ value, size = 36, delay = 0 }: { value: number; size?: number; delay?: number }) {
+  const r = (size - 8) / 2;
+  const c = 2 * Math.PI * r;
+  const offset = c - (value / 100) * c;
   return (
-    <div ref={ref} className="group">
-      <div className="mb-2 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-surface-2 text-primary transition-colors group-hover:bg-primary/15">
-            <Icon className="h-4 w-4" />
-          </span>
-          <span className="text-sm font-medium">{name}</span>
-        </div>
-        <span className="font-mono text-xs text-muted-foreground">{level}%</span>
-      </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${level}%` } : {}}
-          transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
-          className="h-full rounded-full"
-          style={{ background: "var(--gradient-cyan-magenta)" }}
-        />
-      </div>
-    </div>
+    <svg className="flex-shrink-0 -rotate-90" width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+      <circle cx={size / 2} cy={size / 2} r={r} stroke="oklch(1 0 0 / 0.08)" strokeWidth="3" fill="none" />
+      <motion.circle
+        cx={size / 2} cy={size / 2} r={r}
+        stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" fill="none"
+        strokeDasharray={c}
+        initial={{ strokeDashoffset: c }}
+        whileInView={{ strokeDashoffset: offset }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
+        style={{ filter: "drop-shadow(0 0 4px oklch(0.78 0.18 195 / 0.5))" }}
+      />
+    </svg>
   );
 }
 
@@ -320,12 +314,25 @@ export default function CV() {
 
         {/* SKILLS */}
         <Section title="Core Stack" eyebrow="01 — Tools & Frameworks">
-          <div className="glass rounded-3xl p-6 md:p-10">
-            <div className="grid gap-x-10 gap-y-6 md:grid-cols-2">
-              {skills.map((s, i) => (
-                <SkillBar key={s.name} {...s} delay={i * 0.04} />
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {skills.map((s, i) => (
+              <motion.div
+                key={s.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.03, duration: 0.4 }}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="glass relative flex items-center gap-3 overflow-hidden rounded-xl p-3"
+              >
+                <MiniRing value={s.level} size={36} delay={i * 0.03} />
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-xs font-medium leading-tight">{s.name}</div>
+                  <div className="font-mono text-[10px] text-muted-foreground">{s.level}%</div>
+                </div>
+                <div className="absolute bottom-0 left-0 h-[2px] rounded-full bg-primary/60" style={{ width: `${s.level}%` }} />
+              </motion.div>
+            ))}
           </div>
         </Section>
 
