@@ -7,7 +7,6 @@ import {
   Sparkles, Zap, Trophy, Target, ArrowUpRight, Cloud as CloudIcon,
   Calendar, Download,
 } from "lucide-react";
-import Starfield from "./Starfield";
 
 /* ---------- helpers ---------- */
 function Counter({ to, suffix = "", duration = 1.8 }: { to: number; suffix?: string; duration?: number }) {
