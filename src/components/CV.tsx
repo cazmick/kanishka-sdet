@@ -7,6 +7,7 @@ import {
   Sparkles, Zap, Trophy, Target, ArrowUpRight, Cloud as CloudIcon,
   Calendar, Download,
 } from "lucide-react";
+import SparkleStars from "./Sparkles";
 
 /* ---------- helpers ---------- */
 function Counter({ to, suffix = "", duration = 1.8 }: { to: number; suffix?: string; duration?: number }) {
@@ -188,6 +189,9 @@ export default function CV() {
            style={{ background: "oklch(0.7 0.22 320 / 0.25)" }} />
       <div className="pointer-events-none fixed -right-32 top-2/3 h-80 w-80 rounded-full blur-3xl animate-float"
            style={{ background: "oklch(0.78 0.18 195 / 0.2)", animationDelay: "2s" }} />
+
+      {/* sparkling stars */}
+      <div className="pointer-events-none fixed inset-0 -z-10"><SparkleStars count={80} /></div>
 
       <div className="relative mx-auto max-w-6xl px-5 py-10 md:px-8 md:py-16">
         {/* Top contact bar */}
