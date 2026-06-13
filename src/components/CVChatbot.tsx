@@ -3,6 +3,7 @@ import { DefaultChatTransport, type UIMessage } from "ai";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { Bot, Send, Sparkles, X, Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import chatBuddy from "@/assets/chat-buddy.png";
 
 const SUGGESTIONS = [
@@ -205,9 +206,9 @@ export default function CVChatbot() {
                     className={`flex ${isUser ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-2xl px-3.5 py-2 text-sm leading-relaxed whitespace-pre-wrap ${
+                      className={`max-w-[85%] rounded-2xl px-3.5 py-2 text-sm leading-relaxed ${
                         isUser
-                          ? "rounded-br-sm text-white"
+                          ? "rounded-br-sm text-white whitespace-pre-wrap"
                           : "rounded-bl-sm text-foreground/90"
                       }`}
                       style={
@@ -216,7 +217,23 @@ export default function CVChatbot() {
                           : { background: "oklch(1 0 0 / 0.06)", border: "1px solid oklch(1 0 0 / 0.08)" }
                       }
                     >
-                      {text || (m.role === "assistant" && isLoading && <Loader2 className="h-4 w-4 animate-spin" />)}
+                      {isUser ? (
+                        text
+                      ) : text ? (
+                        <div className="prose prose-sm prose-invert max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-a:text-primary prose-a:underline">
+                          <ReactMarkdown
+                            components={{
+                              a: ({ node, ...props }) => (
+                                <a {...props} target="_blank" rel="noopener noreferrer" />
+                              ),
+                            }}
+                          >
+                            {text}
+                          </ReactMarkdown>
+                        </div>
+                      ) : (
+                        isLoading && <Loader2 className="h-4 w-4 animate-spin" />
+                      )}
                     </div>
                   </motion.div>
                 );
