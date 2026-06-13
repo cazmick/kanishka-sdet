@@ -338,24 +338,143 @@ export default function CV() {
 
         {/* AI SECTION */}
         <Section title="AI in Quality Engineering" eyebrow="02 — Emerging Practice">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {aiSkills.map((s, i) => (
-              <motion.div
-                key={s.name}
-                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
-                whileHover={{ y: -6 }}
-                className="glass group relative overflow-hidden rounded-2xl p-6"
-              >
-                <div className="absolute inset-x-0 -top-1 h-[2px] opacity-60" style={{ background: "var(--gradient-hero)" }} />
-                <s.icon className="mb-4 h-7 w-7 text-accent transition-transform group-hover:scale-110" />
-                <div className="font-display text-lg font-semibold">{s.name}</div>
-                <div className="mt-1 text-sm text-muted-foreground">{s.desc}</div>
-                <ArrowUpRight className="absolute right-4 top-4 h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
-              </motion.div>
-            ))}
+          <div className="grid gap-5 lg:grid-cols-[1.05fr_1.4fr]">
+            {/* Neural core */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="glass relative overflow-hidden rounded-3xl p-6 md:p-8"
+            >
+              <div className="absolute inset-0 opacity-60" style={{ background: "var(--gradient-hero)", mixBlendMode: "overlay" }} />
+              <div className="relative flex h-full flex-col">
+                <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                  Neural Core · online
+                </div>
+
+                {/* Orb */}
+                <div className="relative mx-auto my-6 h-44 w-44 md:h-52 md:w-52">
+                  <motion.div
+                    className="absolute inset-0 rounded-full opacity-70 blur-2xl"
+                    style={{ background: "var(--gradient-hero)" }}
+                    animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <svg viewBox="0 0 200 200" className="relative h-full w-full">
+                    <defs>
+                      <radialGradient id="orb" cx="50%" cy="40%" r="60%">
+                        <stop offset="0%" stopColor="oklch(0.88 0.18 95)" stopOpacity="0.9" />
+                        <stop offset="55%" stopColor="oklch(0.78 0.18 195)" stopOpacity="0.5" />
+                        <stop offset="100%" stopColor="oklch(0.7 0.22 320)" stopOpacity="0" />
+                      </radialGradient>
+                    </defs>
+                    {[36, 52, 70, 88].map((r, i) => (
+                      <motion.circle
+                        key={r}
+                        cx="100" cy="100" r={r}
+                        fill="none"
+                        stroke="oklch(1 0 0 / 0.12)"
+                        strokeWidth="1"
+                        strokeDasharray="3 6"
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
+                        transition={{ duration: 18 + i * 6, repeat: Infinity, ease: "linear" }}
+                        style={{ transformOrigin: "100px 100px" }}
+                      />
+                    ))}
+                    <circle cx="100" cy="100" r="30" fill="url(#orb)" />
+                    {/* satellite nodes */}
+                    {[0, 72, 144, 216, 288].map((deg, i) => {
+                      const rad = (deg * Math.PI) / 180;
+                      const x = 100 + Math.cos(rad) * 70;
+                      const y = 100 + Math.sin(rad) * 70;
+                      return (
+                        <g key={deg}>
+                          <line x1="100" y1="100" x2={x} y2={y} stroke="oklch(0.78 0.18 195 / 0.35)" strokeWidth="0.8" />
+                          <motion.circle
+                            cx={x} cy={y} r="3"
+                            fill="oklch(0.88 0.18 95)"
+                            initial={{ opacity: 0.3 }}
+                            animate={{ opacity: [0.3, 1, 0.3] }}
+                            transition={{ duration: 2.4, repeat: Infinity, delay: i * 0.4 }}
+                            style={{ filter: "drop-shadow(0 0 6px oklch(0.88 0.18 95))" }}
+                          />
+                        </g>
+                      );
+                    })}
+                  </svg>
+                </div>
+
+                <div className="mt-auto grid grid-cols-3 gap-3 border-t border-border/60 pt-4 text-center">
+                  {[
+                    { k: "Models", v: "12+" },
+                    { k: "Prompts", v: "240" },
+                    { k: "Tokens/day", v: "1.4M" },
+                  ].map((m) => (
+                    <div key={m.k}>
+                      <div className="font-display text-lg font-semibold text-foreground">{m.v}</div>
+                      <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{m.k}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Capability rail */}
+            <div className="flex flex-col gap-3">
+              {aiSkills.map((s, i) => (
+                <motion.div
+                  key={s.name}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ x: 4 }}
+                  className="glass group relative flex items-center gap-4 overflow-hidden rounded-2xl p-4 md:p-5"
+                >
+                  <div
+                    className="absolute left-0 top-0 h-full w-[3px]"
+                    style={{ background: "var(--gradient-hero)" }}
+                  />
+                  {/* icon tile */}
+                  <div className="relative grid h-12 w-12 flex-shrink-0 place-items-center rounded-xl border border-border bg-surface-2/80">
+                    <s.icon className="h-5 w-5 text-accent transition-transform group-hover:scale-110" />
+                    <span className="absolute -bottom-1 -right-1 rounded-md bg-background px-1.5 py-0.5 font-mono text-[8px] tracking-widest text-muted-foreground">
+                      {s.tag}
+                    </span>
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <div className="font-display text-base font-semibold leading-tight">{s.name}</div>
+                      <div className="font-mono text-[11px] text-muted-foreground">
+                        <Counter to={s.confidence} suffix="%" duration={1.2} />
+                      </div>
+                    </div>
+                    <div className="mt-1 text-xs text-muted-foreground">{s.desc}</div>
+
+                    {/* confidence bar */}
+                    <div className="mt-2.5 h-1 overflow-hidden rounded-full bg-surface-2">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${s.confidence}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                        className="h-full rounded-full"
+                        style={{ background: "var(--gradient-hero)" }}
+                      />
+                    </div>
+                  </div>
+
+                  <ArrowUpRight className="hidden h-4 w-4 flex-shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 md:block" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </Section>
+
 
         {/* EXPERIENCE */}
         <Section title="Professional Experience" eyebrow="03 — Career Timeline">
