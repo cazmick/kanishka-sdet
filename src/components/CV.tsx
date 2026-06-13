@@ -193,12 +193,17 @@ export default function CV() {
           initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
           className="mb-10 flex items-center justify-between gap-4"
         >
-          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            <span className="relative grid h-2 w-2 place-items-center">
-              <span className="absolute inset-0 rounded-full bg-primary animate-pulse-ring" />
-              <span className="relative h-2 w-2 rounded-full bg-primary" />
-            </span>
-            available for opportunities
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              <span className="relative grid h-2 w-2 place-items-center">
+                <span className="absolute inset-0 rounded-full bg-primary animate-pulse-ring" />
+                <span className="relative h-2 w-2 rounded-full bg-primary" />
+              </span>
+              available for opportunities
+            </div>
+            <div className="mt-1 flex items-center gap-1.5 pl-4 text-[10px] uppercase tracking-[0.2em] text-accent/80">
+              <MapPin className="h-3 w-3" /> Open for relocation
+            </div>
           </div>
           <div className="flex items-center gap-2">
             {contacts.map(({ icon: Icon, href, label }) => (
