@@ -171,8 +171,6 @@ export default function CV() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 3D scroll-reactive starfield */}
-      <Starfield density={220} />
 
       {/* scroll progress bar */}
       <motion.div
