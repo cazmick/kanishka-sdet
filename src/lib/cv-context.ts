@@ -1,8 +1,13 @@
 export const CV_CONTEXT = `
 KANISHKA MOGHA — Senior SDET (Mobile & API Automation Specialist)
 Location: Bengaluru, India
+Relocation: Open to relocation (domestic & international)
+Availability: Open to new opportunities — happy to connect
 Email: kanishkamogha20@gmail.com | Phone/WhatsApp: +91 9690226995
 LinkedIn: linkedin.com/in/kanishka-mogha-014729172 | GitHub: github.com/cazmick
+Book a call (Calendly): https://calendly.com/kanishkamogha20/new-meeting
+Resume/CV download: available via the "Download CV" button on this site.
+
 
 SUMMARY
 Experienced SDET specializing in robust automation frameworks for mobile, API, web, and backend systems.
