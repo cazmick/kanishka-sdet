@@ -5,6 +5,7 @@ import {
   Code2, Cpu, Database, GitBranch, Cloud, Network, FlaskConical,
   Smartphone, Server, Brain, LineChart, MessagesSquare, Lightbulb,
   Sparkles, Zap, Trophy, Target, ArrowUpRight, Cloud as CloudIcon,
+  Calendar,
 } from "lucide-react";
 
 /* ---------- helpers ---------- */
@@ -442,6 +443,10 @@ export default function CV() {
                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-primary-foreground transition-transform hover:scale-105"
                  style={{ background: "var(--gradient-cyan-magenta)", boxShadow: "var(--shadow-glow-cyan)" }}>
                 <Mail className="h-4 w-4" /> Get in touch
+              </a>
+              <a href="https://calendly.com/YOUR_CALENDLY_LINK" target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-2/60 px-6 py-3 font-medium transition-colors hover:border-primary hover:text-primary">
+                <Calendar className="h-4 w-4" /> Book a call
               </a>
               <a href="https://www.linkedin.com/in/kanishka-mogha-014729172/" target="_blank" rel="noopener noreferrer"
                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-2/60 px-6 py-3 font-medium hover:border-primary hover:text-primary">
