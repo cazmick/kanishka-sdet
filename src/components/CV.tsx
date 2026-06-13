@@ -83,9 +83,9 @@ function MiniRing({ value, size = 36, delay = 0 }: { value: number; size?: numbe
 /* ---------- data ---------- */
 const stats = [
   { value: 500, suffix: "+", label: "Regression tests automated", icon: FlaskConical },
-  { value: 60, suffix: "%", label: "Manual effort reduced", icon: Zap },
+  { value: 70, suffix: "%", label: "Manual effort reduced", icon: Zap },
   { value: 6, suffix: " yrs", label: "Engineering experience", icon: Trophy },
-  { value: 15, suffix: "%", label: "Defect detection lift", icon: Target },
+  { value: 35, suffix: "%", label: "Defect detection lift", icon: Target },
 ];
 
 const skills = [
@@ -120,10 +120,10 @@ const experience = [
     bullets: [
       "Designed scalable mobile automation frameworks using Appium and XCUITest, boosting test coverage and reliability.",
       "Implemented CI/CD-integrated suites for continuous regression across multiple releases.",
-      "Reduced manual regression effort by 60% via expanded automation coverage and optimized test design.",
+      "Reduced manual regression effort by 70% via expanded automation coverage and optimized test design.",
       "Developed reusable SDKs and components adopted by multiple teams.",
       "Led end-to-end release validation and managed cloud device testing (Sauce Labs).",
-      "Leveraged ML models to prioritize regression tests and analyze flakiness, improving defect detection efficiency by 15%.",
+      "Leveraged ML models to prioritize regression tests and analyze flakiness, improving defect detection efficiency by 35%.",
     ],
   },
   {
