@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import CV from "@/components/CV";
 import CVChatbot from "@/components/CVChatbot";
-import CVSpeaker from "@/components/CVSpeaker";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,7 +19,6 @@ export const Route = createFileRoute("/")({
   component: () => (
     <>
       <CV />
-      <CVSpeaker />
       <CVChatbot />
     </>
   ),
